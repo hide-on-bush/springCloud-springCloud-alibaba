@@ -9,6 +9,7 @@ package com.atguigu.springCloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @Author:夏世雄
@@ -17,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @E-mail: xiashixiong@fy-data.com
  * @Discription:
  **/
+@EnableEurekaClient
 @SpringBootApplication
 public class OrderMain80 {
     public static void main(String[] args) {
