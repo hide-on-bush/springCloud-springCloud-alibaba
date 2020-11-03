@@ -25,7 +25,11 @@ import java.util.List;
  * @Date: 2020/10/30 14:46
  * @Version: 1.0
  * @E-mail: xiashixiong@fy-data.com
- * @Discription:
+ * @Discription: 1.eureka的自我保护模式主要用于一组客户端和eureka server直接存在网络分区场景下的保护，一旦进入保护模式，eureka server将会尝试保护
+ * 其服务注册表中的信息，不再删除服务注册中的数据，也就是说不会注销任何服务。
+ * 2.为什么会存在eureka的自我保护机制？
+ *   为了防止Eureka client可以正常运行，但是与eureka server网络不通情况下，eureka server不会立刻将eureka client服务剔除
+ *
  **/
 
 @Slf4j
