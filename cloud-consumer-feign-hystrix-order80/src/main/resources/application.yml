@@ -1,0 +1,23 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+#本来可以直接使用ribbon.ConnectTimeOut 和ribbon.ReadTimeOut来设置超时时间的，可能是ribbon依赖冲突
+feign:
+  client:
+    config:
+      default:
+        #建立连接所用时间，适用于网络正常的情况下，两端连接所用时间
+        ConnectTimeOut: 7000
+        #指建立连接后从服务端读取到可用资源所用的时间
+        ReadTimeOut: 7000
+
+  #开启服务降级，客户端启用时在配置文件中要加这个配置项，而服务端开启则不需要
+  hystrix:
+    enabled: true
+
