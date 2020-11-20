@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class PaymentController {
 
+    //========================================服务降级start==================================
+
     @Autowired
     private PaymentService paymentService;
 
@@ -43,6 +45,18 @@ public class PaymentController {
     public String getPaymentInfoTimeout(@PathVariable("id") Integer id){
         String result = paymentService.getPaymentInfoTimeout(id);
         log.info("*************result:" + result);
+        return result;
+    }
+
+    //========================================服务降级end====================================
+
+    //========================================服务熔断start==================================
+    //服务熔断（保险丝）   服务降级-》服务熔断-》恢复调用链路
+
+    @GetMapping("/payment/hystrix/cricuitBreaker/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("**************result :" + result);
         return result;
     }
 }

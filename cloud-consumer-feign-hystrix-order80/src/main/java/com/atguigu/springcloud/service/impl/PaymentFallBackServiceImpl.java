@@ -8,7 +8,6 @@
 package com.atguigu.springcloud.service.impl;
 
 import com.atguigu.springcloud.service.PaymentHystrixService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
