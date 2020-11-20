@@ -49,7 +49,7 @@ public class PaymentServiceImpl implements PaymentService {
             @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value = "4000")
     })
     public String getPaymentInfoTimeout(Integer id) {
-        int timeNum = 3;
+        int timeNum = 5;
         try{
             TimeUnit.SECONDS.sleep(timeNum);
         } catch (InterruptedException e) {
