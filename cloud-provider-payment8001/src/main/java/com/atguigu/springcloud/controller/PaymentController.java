@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author:夏世雄
@@ -47,7 +48,7 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-    @PostMapping(value = "payment/create")
+    @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
         int count = paymentService.create(payment);
         log.info("*************插入结果：" +  count);
@@ -88,6 +89,17 @@ public class PaymentController {
 
     @GetMapping("/payment/lb")
     public String getPaymentLB(){
+        return serverPort;
+    }
+
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+        try{
+            //线程暂停几秒钟
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serverPort;
     }
 }
