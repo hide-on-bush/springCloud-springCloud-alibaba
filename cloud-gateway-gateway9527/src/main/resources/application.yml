@@ -1,0 +1,58 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启动从注册中心动态创建路由的功能，利用微服务名进行路由，默认就是true
+
+      #路由
+      routes:
+        - id: payment_routh #payment route  #路由的id，没有规则，但要求唯一，建议配合服务名
+          #uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/get/** #断言 路径相匹配的进行路由
+
+            # - After 请求在该时间之后的请求进行路由
+            #- After=2020-11-23T15:06:21.640+08:00[Asia/Shanghai] #断言请求在该时间之后的请求进行路由
+            # - Before 时间 之前   - Between 时间1，时间2   之间
+
+            # - Cookie=cookieName，ch.p   两个参数一个cookieName 一个是正则表达式。路由规则会通过获取对应cookieName的值和正则
+            #表达式去匹配，如果匹配上则执行，反之不执行。
+            # 在cmd 中使用curl http://localhost:9527/payment/get/1 --cookie "username=xsx" 即可模拟测试
+            #- Cookie=username,xsx
+
+            # - Header=requestName,\d+  两个参数一个是属性名称，一个是正则表达式，两个都匹配则执行。
+            # 在cmd 中使用curl http://localhost:9527/payment/get/1  -H "X-Request-Id:123" 测试
+            #- Header=X-Request-Id,\d+  #请求头要有X-Request-Id属性，且值为正数的正则表达式
+
+            # - Host=主机名称 匹配下面的主机则执行
+            # 使用curl http://localhost:9527/payment/get/1  -H "Host:www.xsx.spring.com"
+            #- Host=**.xsx.spring.com
+
+            #- Method=GET  只有指定的请求才能访问
+
+            #-Query 请求参数名，正则表达式
+            #curl http://localhost:9527/payment/get/1?username=123
+            #- Query=username,\d+ #请求参数为username且值为正数的才可以正常访问
+        - id: payment_routh2 #payment route  #路由的id，没有规则，但要求唯一，建议配合服务名
+          #uri: http://localhost:8001
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/lb/** #断言 路径相匹配的进行路由
+
+
+
+eureka:
+  instance:
+    hostname: cloud-gateway-service
+  client: #服务提供者注册进eureka服务列表内
+    service-url:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka

@@ -31,6 +31,7 @@ public class PaymentHystrixMain8001 {
     }
 
     //使用hystrix监控必须配置以下的bean
+    //监控地址 如下 http://localhost:8001/hystrix.stream
 
     @Bean
     public ServletRegistrationBean getServlet(){
