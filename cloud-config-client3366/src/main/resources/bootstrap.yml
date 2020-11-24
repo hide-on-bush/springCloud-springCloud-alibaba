@@ -1,10 +1,10 @@
 # bootstrap.yml是系统级配置文件，有优先加载权
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application: #spring cloud config client 端配置
-     name: config-client
+    name: config-client
   cloud:
     config:
       profile: dev #读取后缀名称
@@ -12,19 +12,18 @@ spring:
       name: config #配置文件名称
       uri: http://localhost:3344 #配置中心地址
 
-  #rabbitMQ 相关配置 15672是web管理界面端口，5672是mq访问端口
+  #rabbitMQ 相关配置 15672是web管理界面端口，5627是mq访问端口
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
 
-
 #服务注册到eureka
 eureka:
-   client:
-     service-url:
-       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
 
 #暴露监控端点
 management:
