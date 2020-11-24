@@ -1,0 +1,26 @@
+# bootstrap.yml是系统级配置文件，有优先加载权
+server:
+  port: 3355
+
+spring:
+  application: #spring cloud config client 端配置
+     name: config-client
+  cloud:
+    config:
+      profile: dev #读取后缀名称
+      label: main  #分支名称
+      name: config #配置文件名称
+      uri: http://localhost:3344 #配置中心地址
+
+#服务注册到eureka
+eureka:
+   client:
+     service-url:
+       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
