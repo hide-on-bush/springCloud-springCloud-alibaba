@@ -139,7 +139,7 @@ public class OrderController {
     @GetMapping("/consumer80/payment/lb")
     public String getPaymentLB(){
 
-        return restTemplate.getForObject(getUri() + "/payment/lb",String.class);
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/lb",String.class);
     }
 
     public URI getUri(){
@@ -150,5 +150,10 @@ public class OrderController {
         }
         ServiceInstance serviceInstance = loadBalancer.instances(instances);
         return  serviceInstance.getUri();
+    }
+
+    @GetMapping("/consumer/zipkin")
+    public String paymentZipkin(){
+        return  restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin",String.class);
     }
 }
