@@ -1,0 +1,14 @@
+#consul服务注册端口
+server:
+  port: 8006
+
+spring:
+  application:
+    name: consul-privider-payment
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        #hostname 127.0.0.1
+        service-name: ${spring.application.name}
