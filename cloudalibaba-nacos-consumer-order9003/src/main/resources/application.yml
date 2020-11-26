@@ -1,0 +1,22 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: nacos-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #配置nacos地址
+
+
+#消费者将要去访问的微服务名称（注册进nacos的微服务提供者）
+service-url:
+   nacos-user-service: http://nacos-payment-provider
+
+
+#配置feign日志级别
+logging:
+  #feign以什么级别监控哪个接口
+  level:
+    com.atguigu.springcloud.service.OrderService: debug
