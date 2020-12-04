@@ -16,9 +16,9 @@
         <module>cloud-eureka-server7001</module>
         <module>cloud-eureka-server7002</module>
         <module>cloud-provider-payment8002</module>
-        <module>cloud-provider-payment8004</module>
+        <module>cloud-provider-zk-payment8004</module>
         <module>cloud-consumerzk-order80</module>
-      <module>cloud-providerconsul-payment8006</module>
+        <module>cloud-provider-consul-payment8006</module>
         <module>cloud-consumerconsul-order80</module>
         <module>cloud-consumer-feign-order80</module>
         <module>cloud-provider-hystrix-payment8001</module>
@@ -36,6 +36,9 @@
       <module>cloudalibaba-nacos-consumer-order9003</module>
         <module>cloudalibaba-config-nacos-client3377</module>
         <module>cloudalibaba-sentinel-service8401</module>
+        <module>cloudalibaba-provider-payment9005</module>
+        <module>cloudalibaba-provider-payment9006</module>
+        <module>cloudalibaba-consumer-order9007</module>
     </modules>
 
 

@@ -5,25 +5,27 @@
  * 该源代码版权归属福韵数据服务有限公司所有
  * 未经授权，任何人不得复制、泄露、转载、使用，否则将视为侵权
  */
-package com.atguigu.springcloud;
+package com.atgui.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @Author:夏世雄
- * @Date: 2020/11/20 13:04
+ * @Date: 2020/12/3 15:10
  * @Version: 1.0
  * @E-mail: xiashixiong@fy-data.com
  * @Discription:
  **/
-@SpringBootApplication
+@EnableDiscoveryClient
 @EnableFeignClients
-@EnableHystrix //客户端即服务消费方启用hystrix服务降级
-public class OrderHystrixMain80 {
+@SpringBootApplication
+public class ConsumerOrder9007 {
+
     public static void main(String[] args) {
-        SpringApplication.run(OrderHystrixMain80.class,args);
+        SpringApplication.run(ConsumerOrder9007.class,args);
     }
+
 }

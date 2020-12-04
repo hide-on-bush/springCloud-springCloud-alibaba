@@ -22,9 +22,6 @@ spring:
     username: guest
     password: guest
 
-
-
-
 #注册到eureka
 eureka:
   client:

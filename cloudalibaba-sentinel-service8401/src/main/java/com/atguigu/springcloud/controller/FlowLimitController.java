@@ -7,8 +7,11 @@
  */
 package com.atguigu.springcloud.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
@@ -63,5 +66,28 @@ public class FlowLimitController {
         log.info("=============test 服务降级策略--》异常数===========");
         int age = 10/0;
         return "============测试服务降级策略，异常数===========";
+    }
+
+    /**
+     * 热点参数限流
+     * @SentinelResource 处理的是sentinel控制台配置的违规情况，由blockedHandler方法配置的方法处理而RuntimeException
+     * （int age = 10/0）其不管，运行出错该走异常走异常。主管配置出错
+     * @return
+     */
+    @GetMapping("/test/hotKey")
+    @SentinelResource(value = "testHotKey",blockHandler = "dealTestHotKey")
+    public String testHotKey(@RequestParam(value = "parameter1",required = false) String parameter1,
+                             @RequestParam(value = "parameter2",required = false) String parameter2){
+        int age = 10/0;
+       return "=============== test hot key 热点限流==============";
+    }
+
+    public String dealTestHotKey(String parameter1, String parameter2, BlockException exception) {
+        //sentinel 系统默认提示Blocked By Sentinel (flow limiting)
+        return "===============兜底方法，dealTestHotKey===============";
+    }
+
+    public String fallback(){
+        return "==============fallback=============";
     }
 }

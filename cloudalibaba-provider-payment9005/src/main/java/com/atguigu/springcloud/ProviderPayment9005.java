@@ -9,21 +9,20 @@ package com.atguigu.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @Author:夏世雄
- * @Date: 2020/11/20 13:04
+ * @Date: 2020/12/3 11:49
  * @Version: 1.0
  * @E-mail: xiashixiong@fy-data.com
  * @Discription:
  **/
+@EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients
-@EnableHystrix //客户端即服务消费方启用hystrix服务降级
-public class OrderHystrixMain80 {
+public class ProviderPayment9005 {
+
     public static void main(String[] args) {
-        SpringApplication.run(OrderHystrixMain80.class,args);
+        SpringApplication.run(ProviderPayment9005.class,args);
     }
 }
